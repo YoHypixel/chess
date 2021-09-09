@@ -71,18 +71,19 @@ func AI(game *chess.Game) *chess.Move {
 	if len(valid) == 0 {
 		return nil
 	}
-	move := valid[rand.Intn(len(valid))]
+	testa := valid[rand.Intn(len(valid))]
 
-	return move
+	return testa
 }
 
 func fenReturn(fennotation string) []string {
-	preRows := strings.Split(fennotation, " ")
-	rows := strings.Split(preRows[0], "/")
+	rows := strings.Split(fennotation, "/")
 
-	spaces := map[string]string{"1": "|", "2": "||", "3": "|||", "4": "||||", "5": "|||||", "6": "||||||", "7": "|||||||", "8": "||||||||"}
+	spaces := map[string]string{"1": "|", "2": "||", "3": "|||", "4": "4", "5": "5", "6": "6", "7": "7", "8": "empty"}
 	counter := 0
+	final := []string{}
 	for _, row := range rows {
+		fmt.Println(row)
 		affect := []string{row}
 		counter++
 
@@ -94,7 +95,7 @@ func fenReturn(fennotation string) []string {
 				affect[0] = done
 			}
 		}
-		fmt.Println(affect)
+		final[counter] = affect[0]
 	}
 	fmt.Println("counter: ", counter)
 	return nil

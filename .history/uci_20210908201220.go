@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"math/rand"
 	"os/exec"
-	"strings"
 	"time"
 
 	"fyne.io/fyne/v2"
@@ -50,7 +49,6 @@ func playResponse(u *ui) {
 
 	u.over.Move(cell.Position())
 	move(m, u.game, false, u)
-	fmt.Println(u.game.FEN())
 }
 
 //func randomResponse(game *chess.Game) *chess.Move {
@@ -65,37 +63,15 @@ func playResponse(u *ui) {
 func AI(game *chess.Game) *chess.Move {
 	test := game.FEN()
 	fmt.Println("pre move:")
-	fenReturn(test)
+	fmt.Println(test)
 	valid := game.ValidMoves()
 
 	if len(valid) == 0 {
 		return nil
 	}
-	move := valid[rand.Intn(len(valid))]
-
-	return move
-}
-
-func fenReturn(fennotation string) []string {
-	preRows := strings.Split(fennotation, " ")
-	rows := strings.Split(preRows[0], "/")
-
-	spaces := map[string]string{"1": "|", "2": "||", "3": "|||", "4": "||||", "5": "|||||", "6": "||||||", "7": "|||||||", "8": "||||||||"}
-	counter := 0
-	for _, row := range rows {
-		affect := []string{row}
-		counter++
-
-		for index, element := range spaces {
-
-			res := strings.Contains(affect[0], index)
-			if res {
-				done := strings.Replace(affect[0], index, element, -1)
-				affect[0] = done
-			}
-		}
-		fmt.Println(affect)
-	}
-	fmt.Println("counter: ", counter)
-	return nil
+	testa := valid[rand.Intn(len(valid))]
+	fmt.Println("post move:")
+	test = game.FEN()
+	fmt.Println(test)
+	return testa
 }

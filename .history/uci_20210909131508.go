@@ -71,9 +71,9 @@ func AI(game *chess.Game) *chess.Move {
 	if len(valid) == 0 {
 		return nil
 	}
-	move := valid[rand.Intn(len(valid))]
+	testa := valid[rand.Intn(len(valid))]
 
-	return move
+	return testa
 }
 
 func fenReturn(fennotation string) []string {

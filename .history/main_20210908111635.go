@@ -24,7 +24,7 @@ func main() {
 	if u.eng != nil {
 		defer u.eng.Close()
 	} else {
-		log.Println("Could not find stockfish executable, using random player")
+		log.Println("Cound not find stockfish executable, using random player")
 		rand.Seed(time.Now().Unix()) // random seed for random responses
 	}
 

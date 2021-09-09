@@ -65,37 +65,31 @@ func playResponse(u *ui) {
 func AI(game *chess.Game) *chess.Move {
 	test := game.FEN()
 	fmt.Println("pre move:")
+	fmt.Println(test)
+	fmt.Println("pre move:")
 	fenReturn(test)
+	fmt.Println("pre move:")
 	valid := game.ValidMoves()
+	fmt.Printf("chess.PieceTypes(): %v\n", chess.PieceTypes())
 
 	if len(valid) == 0 {
 		return nil
 	}
-	move := valid[rand.Intn(len(valid))]
+	testa := valid[rand.Intn(len(valid))]
+	fmt.Println("post move:")
 
-	return move
+	return testa
 }
 
-func fenReturn(fennotation string) []string {
-	preRows := strings.Split(fennotation, " ")
-	rows := strings.Split(preRows[0], "/")
+func fenReturn(fennotation string) *string {
+	rows := strings.Split(fennotation, "/")
 
-	spaces := map[string]string{"1": "|", "2": "||", "3": "|||", "4": "||||", "5": "|||||", "6": "||||||", "7": "|||||||", "8": "||||||||"}
-	counter := 0
+	m := map[string]string{"1": " ", "2": "  ", "3": "   ", "4": "    ", "5": "     ", "6": "      ", "7": "       ", "8": "        "}
+
 	for _, row := range rows {
-		affect := []string{row}
-		counter++
-
-		for index, element := range spaces {
-
-			res := strings.Contains(affect[0], index)
-			if res {
-				done := strings.Replace(affect[0], index, element, -1)
-				affect[0] = done
-			}
+		for _, i := range m {
+			fmt.Println(row[:i])
 		}
-		fmt.Println(affect)
 	}
-	fmt.Println("counter: ", counter)
 	return nil
 }
